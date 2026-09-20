@@ -5,6 +5,8 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 10
+    cooldown:
+      default-days: 7
 
   - package-ecosystem: gomod
     directory: /gogit
@@ -13,9 +15,13 @@ updates:
     open-pull-requests-limit: 10
     ignore:
       - dependency-name: github.com/git-pkgs/clone
+    cooldown:
+      default-days: 7
 
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
+    cooldown:
+      default-days: 7
