@@ -379,7 +379,7 @@ func TestEnsureRetriesCloneAndResetsPartialDestination(t *testing.T) {
 	}
 }
 
-func TestEnsureConfiguresLongPathsForCloneAndFetch(t *testing.T) {
+func TestEnsureConfiguresLongPathsForCloneFetchAndReset(t *testing.T) {
 	dst := filepath.Join(t.TempDir(), "checkout")
 	commands := make(map[string][]string)
 	retry := Retry{
@@ -393,7 +393,7 @@ func TestEnsureConfiguresLongPathsForCloneAndFetch(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Ensure: %v", err)
 	}
-	for _, command := range []string{"clone", "fetch"} {
+	for _, command := range []string{"clone", "fetch", "reset"} {
 		args := commands[command]
 		want := []string{"-c", "core.longpaths=true"}
 		if len(args) < len(want) || !slices.Equal(args[:len(want)], want) {

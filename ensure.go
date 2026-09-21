@@ -147,7 +147,7 @@ func fetchRef(ctx context.Context, retry Retry, url, dst, ref string, full bool)
 		return fmt.Errorf("%s: %w", strings.TrimSpace(out), err)
 	}
 	out, err = policy.Run(ctx, "", nil,
-		"-C", dst, "reset", "--quiet", "--hard", "--no-recurse-submodules", "FETCH_HEAD",
+		longPathArgs("-C", dst, "reset", "--quiet", "--hard", "--no-recurse-submodules", "FETCH_HEAD")...,
 	)
 	if err != nil {
 		return fmt.Errorf("%s: %w", strings.TrimSpace(out), err)
