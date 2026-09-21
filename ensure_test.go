@@ -244,11 +244,11 @@ func TestEnsureWithOptionsIgnoresSubmoduleFailure(t *testing.T) {
 	); err != nil {
 		t.Fatalf("EnsureWithOptions: %v", err)
 	}
-	wantSyncArgs := []string{"submodule", "sync", "--recursive"}
+	wantSyncArgs := []string{"-c", "core.longpaths=true", "submodule", "sync", "--recursive"}
 	if !slices.Equal(syncArgs, wantSyncArgs) {
 		t.Errorf("submodule sync args = %v, want %v", syncArgs, wantSyncArgs)
 	}
-	wantUpdateArgs := []string{"submodule", "update", "--init", "--recursive", "--depth", "1"}
+	wantUpdateArgs := []string{"-c", "core.longpaths=true", "submodule", "update", "--init", "--recursive", "--depth", "1"}
 	if !slices.Equal(updateArgs, wantUpdateArgs) {
 		t.Errorf("submodule update args = %v, want %v", updateArgs, wantUpdateArgs)
 	}
